@@ -2,7 +2,13 @@
 
 [https://coreyflix.herokuapp.com/](https://coreyflix.herokuapp.com/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Todo
+
+[ ] Add year to movie card
+[x] Add ability to queue movie to download
+[ ] Add indicator that a movie is already on mediaserver
+
 
 ## Available Scripts
 

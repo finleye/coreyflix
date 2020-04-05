@@ -19,30 +19,29 @@ const useStyles = makeStyles({
 
 const MovieCard = (props) => {
   const classes = useStyles();
+  const { poster_path, title, release_date, overview} = props;
+  const releaseYear =  release_date ? `(${release_date.substring(0,4)})` : undefined
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={`https://image.tmdb.org/t/p/w500/${props.poster_path}`}
+          image={`https://image.tmdb.org/t/p/w500/${poster_path}`}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-              {props.title}
+            {title} {releaseYear}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-              {props.overview}
+              {overview}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+          Add to queue
         </Button>
       </CardActions>
     </Card>

@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 
 import Form from './components/Form.js'
 import MovieList from './components/MovieList.js'
+import QueueTable from './components/QueueTable.js'
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,6 +42,12 @@ function App() {
         <Typography variant="h2" component="h3">
           Coreyflix
         </Typography>
+      </Container>
+      <Container maxWidth="lg">
+        <Typography variant="h4" component="h5">
+          Queue
+        </Typography>
+        <QueueTable />
       </Container>
       <Container maxWidth="lg">
         <Form onInputChange={updateQuery} />
