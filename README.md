@@ -5,10 +5,15 @@
 
 ## Todo
 
-[ ] Add year to movie card
-[x] Add ability to queue movie to download
-[ ] Add indicator that a movie is already on mediaserver
-
+* [x] Add year to movie card
+* [x] Add ability to queue movie to download
+* [x] Add indicator that movie is already enqueued
+* [ ] Ability to remove an item from the queue
+* [ ] Authentication through plex?
+* [ ] Approval for movies added to queue
+* [ ] Progress bar instead of number
+* [ ] How to check for progress?
+* [ ] Add indicator that a movie is already on mediaserver
 
 ## Available Scripts
 
