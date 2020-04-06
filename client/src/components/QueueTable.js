@@ -14,18 +14,9 @@ const useStyles = makeStyles({
   },
 });
 
-
-const QueueTable = () => {
+const QueueTable = (props) => {
   const classes = useStyles();
-  const [rows, setRows] = useState([]);
-
-  async function fetchData() {
-
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
+  const { queue } = props;
 
   return (
     <TableContainer component={Paper}>
@@ -37,10 +28,10 @@ const QueueTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">{row.title}</TableCell>
-              <TableCell>{row.progress}</TableCell>
+          {queue.map((movie) => (
+            <TableRow key={movie.name}>
+              <TableCell component="th" scope="row">{movie.title}</TableCell>
+              <TableCell>{movie.progress}</TableCell>
             </TableRow>
           ))}
         </TableBody>

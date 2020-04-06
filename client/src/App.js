@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,15 +25,36 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const [moviesData, setMoviesData] = useState([])
-  const [query, setQuery] = useState("")
+  const [refetchQueue, setRefetchQueue] = useState(false);
+
+  const [queue, setQueue] = useState([]);
+
+  async function fetchQueueData() {
+    const res = await fetch("/api/movie/queue");
+    res
+      .json()
+      .then(res => setQueue(res.enriched))
+      .catch(err => console.log(err));
+  }
+
+  useEffect(() => {
+    fetchQueueData()
+  }, [])
 
   const updateQuery = async e => {
     let query = e.target.value;
-    setQuery(query);
     const response = await fetch(`/api/movie/search/${query}`);
     const json = await response.json()
     setMoviesData(json)
   };
+
+  const addToQueue = async tmdbId => {
+    const requestOptions = {
+      method: 'POST'
+    };
+    const response = await fetch(`/api/movie/queue/${tmdbId}`, requestOptions);
+    fetchQueueData()
+  }
 
   return (
     <>
@@ -47,11 +68,11 @@ function App() {
         <Typography variant="h4" component="h5">
           Queue
         </Typography>
-        <QueueTable />
+        <QueueTable queue={queue}/>
       </Container>
       <Container maxWidth="lg">
         <Form onInputChange={updateQuery} />
-        <MovieList movieCollection={moviesData} />
+        <MovieList movieCollection={moviesData} queue={queue} addToQueueHandler={addToQueue}/>
       </Container>
     </>
   );

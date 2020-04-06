@@ -11,12 +11,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MovieList = (props) => {
-  const { movieCollection, spacing=2 } = props;
+  const { queue, movieCollection, spacing=2 } = props;
+  const enqueuedIds = queue.map(m => m.id)
+  console.log(enqueuedIds)
   return (
     <Grid container justify="center" spacing={spacing}>
       {movieCollection.map((movieData) => (
         <Grid key={movieData.id} item xs={3}>
-          <MovieCard {...movieData} />
+          <MovieCard 
+            addToQueueHandler={props.addToQueueHandler} 
+            enqueued={enqueuedIds.includes(String(movieData.id))}
+            {...movieData} 
+          />
         </Grid>
       ))}
     </Grid>

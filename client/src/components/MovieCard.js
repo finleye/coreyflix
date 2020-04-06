@@ -19,8 +19,16 @@ const useStyles = makeStyles({
 
 const MovieCard = (props) => {
   const classes = useStyles();
-  const { poster_path, title, release_date, overview} = props;
+  const { enqueued, addToQueueHandler, id, poster_path, title, release_date, overview} = props;
   const releaseYear =  release_date ? `(${release_date.substring(0,4)})` : undefined
+
+  const addToQueueClick = () => addToQueueHandler(id)
+
+  const button = () => {
+    if(enqueued){
+
+    }
+  }
 
   return (
     <Card className={classes.root}>
@@ -40,8 +48,8 @@ const MovieCard = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Add to queue
+        <Button size="small" color="primary" onClick={addToQueueClick} disabled={enqueued}>
+          { enqueued ? 'Enqueued' : 'Add to queue' }
         </Button>
       </CardActions>
     </Card>
