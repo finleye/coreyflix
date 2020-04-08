@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles({
   table: {
@@ -24,6 +25,8 @@ const QueueTable = (props) => {
         <TableHead>
           <TableRow>
             <TableCell>Title</TableCell>
+            <TableCell>IMDb</TableCell>
+            <TableCell>nzbgeek</TableCell>
             <TableCell>Progress</TableCell>
           </TableRow>
         </TableHead>
@@ -31,6 +34,18 @@ const QueueTable = (props) => {
           {queue.map((movie) => (
             <TableRow key={movie.name}>
               <TableCell component="th" scope="row">{movie.title}</TableCell>
+              <TableCell>
+                <Link 
+                  target="_blank" 
+                  href={`https://www.imdb.com/title/${movie.imdb_id}`}
+                >IMDb page</Link>
+              </TableCell>
+              <TableCell>
+                <Link
+                  target="_blank" 
+                  href={`https://nzbgeek.info/geekseek.php?movieid=${movie.imdb_id.replace('tt','')}`}
+                >Movie Seek</Link>
+              </TableCell>
               <TableCell>{movie.progress}</TableCell>
             </TableRow>
           ))}
